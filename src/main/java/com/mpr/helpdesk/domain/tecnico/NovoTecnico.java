@@ -5,7 +5,6 @@ import com.mpr.helpdesk.application.tecnico.TecnicoDTO;
 import com.mpr.helpdesk.domain.pessoa.Pessoa;
 import com.mpr.helpdesk.infra.repositories.PessoaRepository;
 import com.mpr.helpdesk.infra.repositories.TecnicoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -33,14 +32,14 @@ public class NovoTecnico {
 
     private void validarPorCpfEEmail(TecnicoDTO tecnico) {
         Optional<Pessoa> pessoa = pessoaRepository.findPessoaByCpf(tecnico.getCpf());
-        if(pessoa.isPresent() && !Objects.equals(pessoa.get().getId(), tecnico.getId())){
-            throw  new NegocioException("O CPF informado já esta registrado no sistema", tecnico.getCpf());
+        if (pessoa.isPresent() && !Objects.equals(pessoa.get().getId(), tecnico.getId())) {
+            throw new NegocioException("O CPF informado já esta registrado no sistema", tecnico.getCpf());
         }
 
         pessoa = pessoaRepository.findPessoaByEmail(tecnico.getEmail());
 
-        if(pessoa.isPresent() && !Objects.equals(pessoa.get().getId(), tecnico.getId())){
-            throw  new NegocioException("O email informado já esta registrado no sistema", tecnico.getEmail());
+        if (pessoa.isPresent() && !Objects.equals(pessoa.get().getId(), tecnico.getId())) {
+            throw new NegocioException("O email informado já esta registrado no sistema", tecnico.getEmail());
         }
 
     }
