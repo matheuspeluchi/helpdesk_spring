@@ -1,20 +1,21 @@
 package com.mpr.helpdesk.config;
 
-import com.mpr.helpdesk.infra.services.DBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import com.mpr.helpdesk.services.DBService;
+
 @Configuration
 @Profile("test")
 public class TestConfig {
 
-    @Autowired
-    private DBService dbService;
+	@Autowired
+	private DBService dbService;
 
-    @Bean
-    public void initDB(){
-        this.dbService.instanciaDB();
-    }
+	@Bean
+	public void instanciaDB() {
+		this.dbService.instanciaDB();
+	}
 }

@@ -1,27 +1,28 @@
 package com.mpr.helpdesk.config;
 
-import com.mpr.helpdesk.infra.services.DBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import com.mpr.helpdesk.services.DBService;
+
 @Configuration
 @Profile("dev")
 public class DevConfig {
 
-    @Autowired
-    private DBService dbService;
+	@Autowired
+	private DBService dbService;
 
-    @Value("${spring.jpa.hibernate.ddl-auto}")
-    private String value;
+	@Value("${spring.jpa.hibernate.ddl-auto}")
+	private String value;
 
-    @Bean
-    public boolean initDB(){
-        if(value.equals("create")){
-            this.dbService.instanciaDB();
-        }
-        return false;
-    }
+	@Bean
+	public boolean instanciaDB() {
+		if (value.equals("create")) {
+			this.dbService.instanciaDB();
+		}
+		return false;
+	}
 }
